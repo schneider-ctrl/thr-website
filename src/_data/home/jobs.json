@@ -1,0 +1,44 @@
+{
+  "heading": "Wir freuen uns,\nSie kennenzulernen.",
+  "box_eyebrow": "Offene Stellen",
+  "box_heading": "Wir suchen Reinigungskräfte (m/w/d)",
+  "box_text": "Bewerben Sie sich jetzt mit unserem Online-Formular!",
+  "box_cta_label": "Jetzt bewerben",
+  "box_cta_anchor": "/bewerbung/",
+  "team_heading": "Unser Team",
+  "team_text": "Seit unserer Gründung im Jahr 2018 setzt unser Team auf langfristige Partnerschaften. Wertschätzung und eine enge Zusammenarbeit zeichnen uns aus. Gemeinsam wachsen wir, um die Erwartungen unserer Kunden täglich zu übertreffen.",
+  "gallery": [
+    {
+      "image": "/assets/uploads/team-1.jpg",
+      "alt": "Mitarbeiter in gelbem Firmen-T-Shirt steht vor einem Transporter der Treppenhausreinigung Rostock"
+    },
+    {
+      "image": "/assets/uploads/team-4.jpg",
+      "alt": "Lachende Mitarbeiterin in gelbem Firmen-T-Shirt mit Wischmopp im Treppenhaus"
+    },
+    {
+      "image": "/assets/uploads/team-2.jpg",
+      "alt": "Mitarbeiterin in gelber Firmenjacke lehnt an der Front eines gelben Firmenwagens"
+    },
+    {
+      "image": "/assets/uploads/team-8.jpg",
+      "alt": "Mitarbeiterin in gelber Firmenjacke wischt die Stufen in einem Treppenhaus"
+    },
+    {
+      "image": "/assets/uploads/team-7.jpg",
+      "alt": "Zwei Mitarbeiterinnen in gelben Firmenjacken stehen vor einem Transporter der Treppenhausreinigung Rostock"
+    },
+    {
+      "image": "/assets/uploads/team-5.jpg",
+      "alt": "Mitarbeiter mit Cap und gelbem Firmen-T-Shirt steht mit verschränkten Armen vor einem Wohnhaus"
+    },
+    {
+      "image": "/assets/uploads/team-3.jpg",
+      "alt": "Mitarbeiterin in gelbem Firmen-T-Shirt steht vor einem gelben Firmenwagen mit grünem Logo"
+    },
+    {
+      "image": "/assets/uploads/team-6.jpg",
+      "alt": "Zwei Teammitglieder stehen Arm in Arm vor einem Wohnhaus"
+    }
+  ]
+}

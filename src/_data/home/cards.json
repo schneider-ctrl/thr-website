@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "image": "/assets/uploads/team-duo.jpg",
+      "image_alt": "Zwei lächelnde Reinigungskräfte in gelben Firmen-T-Shirts stehen mit Wischmopps auf einer Wiese vor einem Wohnhaus",
+      "heading": "Verlässlichkeit ist\nuns wichtig",
+      "text": "Über 120 Kundinnen und Kunden bestätigen: Auf unsere Arbeit ist Verlass. Geschulte Teams reinigen pünktlich und setzen Absprachen exakt um."
+    },
+    {
+      "image": "/assets/uploads/fuhrpark.jpg",
+      "image_alt": "Mehrere gelb-grüne Firmentransporter der Treppenhausreinigung Rostock stehen aufgereiht auf einem Parkplatz",
+      "heading": "Wir sind immer für\nSie erreichbar",
+      "text": "Während unserer Geschäftszeiten erreichen Sie uns direkt telefonisch und rund um die Uhr über unser Kontaktformular. Wir garantieren Ihnen eine schnelle Rückmeldung."
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "heading": "Bereit für einen Job,\nder glänzt?",
+  "intro": "In 2 Minuten beworben – ganz ohne Anschreiben und Lebenslauf. Versprochen.",
+  "start_label": "Los geht's",
+  "q_license": {
+    "question": "Hast du einen Führerschein?",
+    "hint": "Kein Muss – aber praktisch für unsere gelben Flitzer.",
+    "yes": "Klar, Klasse B",
+    "no": "Nein, noch nicht"
+  },
+  "q_plz": {
+    "question": "Wo wohnst du?",
+    "hint": "Deine Postleitzahl reicht – so planen wir deine Einsätze wohnortnah.",
+    "placeholder": "z. B. 18055"
+  },
+  "q_wichtig": {
+    "question": "Was ist dir bei der Arbeit wichtig?",
+    "hint": "Wähl so viele aus, wie du magst.",
+    "options": [
+      "Faire Bezahlung",
+      "Nettes Team",
+      "Geregelte Arbeitszeiten",
+      "Eigenständiges Arbeiten",
+      "Einsätze in meiner Nähe",
+      "Wertschätzung"
+    ]
+  },
+  "q_start": {
+    "question": "Wann kannst du anfangen?",
+    "options": ["Sofort", "In 2 Wochen", "In einem Monat", "Bin noch flexibel"]
+  },
+  "q_erreichbar": {
+    "question": "Wann erreichen wir dich am besten?",
+    "options": ["Morgens", "Mittags", "Nachmittags", "Abends"]
+  },
+  "contact": {
+    "question": "Fast geschafft! Wie erreichen wir dich?",
+    "hint": "Wir melden uns – meistens schon am selben Tag.",
+    "name_label": "Dein Name",
+    "phone_label": "Deine Telefonnummer",
+    "email_label": "Deine E-Mail (optional)",
+    "privacy_text": "Ich habe die Datenschutzerklärung zur Kenntnis genommen und willige ein, dass meine Daten zur Bearbeitung meiner Bewerbung elektronisch gespeichert werden.",
+    "submit_label": "Bewerbung abschicken"
+  },
+  "success": {
+    "heading": "Sauber! Deine Bewerbung ist da.",
+    "text": "Wir melden uns so schnell wie möglich bei dir – meistens noch am selben Tag. Bis gleich!",
+    "back_label": "Zurück zur Startseite"
+  }
+}

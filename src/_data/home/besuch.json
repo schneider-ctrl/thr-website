@@ -1,0 +1,19 @@
+{
+  "heading": "Auch vor Ort können Sie\nuns jederzeit besuchen.",
+  "text": "Sie können uns jederzeit auch persönlich auf unserem Betriebshof besuchen, um Ihr Anliegen direkt vor Ort zu besprechen. Ob für eine kurze Beratung oder ein erstes Kennenlernen – wir freuen uns sehr auf Ihren Anruf oder Ihr persönliches Vorbeikommen!",
+  "box_heading": "Wir sind ganz\nin Ihrer Nähe!",
+  "box_text": "Unser Büro und unseren Betriebshof finden Sie mitten im Herzen der Rostocker Innenstadt, in direkter und bequemer Nähe zum Hauptbahnhof.",
+  "map_image": "/assets/uploads/karte.jpg",
+  "map_link": "https://maps.google.com/?q=Dalwitzhofer+Weg+5,+18055+Rostock",
+  "cta_label": "Jetzt kennenlernen",
+  "cta_anchor": "#kontakt",
+  "areas_heading": "Wir reinigen in:",
+  "areas": [
+    "Rostock",
+    "Warnemünde",
+    "Bad Doberan",
+    "Kühlungsborn",
+    "Bentwisch",
+    "Lütten Klein"
+  ]
+}

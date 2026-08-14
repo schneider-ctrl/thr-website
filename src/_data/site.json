@@ -1,0 +1,46 @@
+{
+  "title": "Treppenhausreinigung Rostock",
+  "description": "Treppenhausreinigung in Rostock & Umgebung: maßgeschneiderte Reinigungskonzepte, über 400 Objekte pro Woche. Jetzt kostenloses Angebot anfragen!",
+  "logo": "/assets/logo.png",
+  "phone": "0381 4444614",
+  "email": "info@thr-rostock.de",
+  "address_line1": "Dalwitzhofer Weg 5",
+  "address_line2": "18055 Rostock",
+  "hours": [
+    {
+      "days": "Mo.–Do.:",
+      "time": "8:00–15:30"
+    },
+    {
+      "days": "Fr.:",
+      "time": "8:00–13:00"
+    }
+  ],
+  "nav": [
+    {
+      "label": "Start",
+      "anchor": "#start"
+    },
+    {
+      "label": "Über uns",
+      "anchor": "#ueber-uns"
+    },
+    {
+      "label": "Kompetenzen",
+      "anchor": "#kompetenzen"
+    },
+    {
+      "label": "Jobs",
+      "anchor": "#jobs"
+    },
+    {
+      "label": "Kontakt",
+      "anchor": "#kontakt"
+    }
+  ],
+  "facebook": "https://www.facebook.com/",
+  "instagram": "https://www.instagram.com/",
+  "copyright": "© Copyright Treppenhausreinigung",
+  "url": "https://www.treppenhausreinigung-rostock.de",
+  "seo_title": "Treppenhausreinigung Rostock – zuverlässig & professionell"
+}

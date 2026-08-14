@@ -1,0 +1,125 @@
+---
+layout: base.njk
+title: Bewerbung
+description: "Jobs bei der Treppenhausreinigung Rostock: Jetzt in 2 Minuten als Reinigungskraft (m/w/d) bewerben – ohne Anschreiben und Lebenslauf."
+permalink: /bewerbung/
+---
+
+<!-- Statisches Formular, damit Netlify die Felder erkennt -->
+<form name="bewerbung" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="fuehrerschein">
+  <input type="text" name="plz">
+  <input type="text" name="wichtig">
+  <input type="text" name="starttermin">
+  <input type="text" name="erreichbar">
+  <input type="text" name="name">
+  <input type="text" name="telefon">
+  <input type="email" name="email">
+  <input type="text" name="bot-field">
+</form>
+
+<section class="section wizard-section" id="bewerbung">
+  <div class="container container--narrow">
+    <div class="wizard" data-wizard>
+
+      <!-- Fortschritt -->
+      <div class="wizard__progress" data-progress hidden>
+        <div class="wizard__progress-info">
+          <span class="mono-label" data-progress-label>Schritt 1 von 6</span>
+          <span class="mono-label" data-progress-percent>0%</span>
+        </div>
+        <div class="wizard__bar"><div class="wizard__bar-fill" data-progress-fill></div></div>
+      </div>
+
+      <!-- Start -->
+      <div class="wizard__step is-active" data-step="start">
+        <h1 class="h2">{{ bewerbung.heading | nl2br | safe }}</h1>
+        <p class="lead">{{ bewerbung.intro }}</p>
+        <button type="button" class="btn btn--yellow btn--big" data-start>{{ bewerbung.start_label }}</button>
+      </div>
+
+      <!-- 1: Führerschein -->
+      <div class="wizard__step" data-step="1">
+        <h2 class="h3">{{ bewerbung.q_license.question }}</h2>
+        <p class="wizard__hint">{{ bewerbung.q_license.hint }}</p>
+        <div class="wizard__options">
+          <button type="button" class="option-card" data-answer="fuehrerschein" data-value="{{ bewerbung.q_license.yes }}">{{ bewerbung.q_license.yes }}</button>
+          <button type="button" class="option-card" data-answer="fuehrerschein" data-value="{{ bewerbung.q_license.no }}">{{ bewerbung.q_license.no }}</button>
+        </div>
+      </div>
+
+      <!-- 2: PLZ -->
+      <div class="wizard__step" data-step="2">
+        <h2 class="h3">{{ bewerbung.q_plz.question }}</h2>
+        <p class="wizard__hint">{{ bewerbung.q_plz.hint }}</p>
+        <div class="wizard__input-row">
+          <input type="text" inputmode="numeric" maxlength="5" pattern="[0-9]{5}" placeholder="{{ bewerbung.q_plz.placeholder }}" data-input="plz" aria-label="Postleitzahl">
+          <button type="button" class="btn btn--yellow" data-next-input>Weiter</button>
+        </div>
+        <p class="wizard__error" data-error hidden>Bitte gib eine gültige Postleitzahl ein (5 Ziffern).</p>
+      </div>
+
+      <!-- 3: Was ist wichtig (Mehrfachauswahl) -->
+      <div class="wizard__step" data-step="3">
+        <h2 class="h3">{{ bewerbung.q_wichtig.question }}</h2>
+        <p class="wizard__hint">{{ bewerbung.q_wichtig.hint }}</p>
+        <div class="wizard__chips">
+          {% for option in bewerbung.q_wichtig.options %}
+            <button type="button" class="chip" data-chip data-value="{{ option }}">{{ option }}</button>
+          {% endfor %}
+        </div>
+        <button type="button" class="btn btn--yellow" data-next-multi disabled>Weiter</button>
+      </div>
+
+      <!-- 4: Starttermin -->
+      <div class="wizard__step" data-step="4">
+        <h2 class="h3">{{ bewerbung.q_start.question }}</h2>
+        <div class="wizard__options wizard__options--grid">
+          {% for option in bewerbung.q_start.options %}
+            <button type="button" class="option-card" data-answer="starttermin" data-value="{{ option }}">{{ option }}</button>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- 5: Erreichbarkeit -->
+      <div class="wizard__step" data-step="5">
+        <h2 class="h3">{{ bewerbung.q_erreichbar.question }}</h2>
+        <div class="wizard__options wizard__options--grid">
+          {% for option in bewerbung.q_erreichbar.options %}
+            <button type="button" class="option-card" data-answer="erreichbar" data-value="{{ option }}">{{ option }}</button>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- 6: Kontakt -->
+      <div class="wizard__step" data-step="6">
+        <h2 class="h3">{{ bewerbung.contact.question }}</h2>
+        <p class="wizard__hint">{{ bewerbung.contact.hint }}</p>
+        <label for="bw-name">{{ bewerbung.contact.name_label }}</label>
+        <input type="text" id="bw-name" data-input="name" autocomplete="name">
+        <label for="bw-phone">{{ bewerbung.contact.phone_label }}</label>
+        <input type="tel" id="bw-phone" data-input="telefon" autocomplete="tel">
+        <label for="bw-email">{{ bewerbung.contact.email_label }}</label>
+        <input type="email" id="bw-email" data-input="email" autocomplete="email">
+        <label class="checkbox">
+          <input type="checkbox" data-input="datenschutz">
+          <span>{{ bewerbung.contact.privacy_text | replace("Datenschutzerklärung", '<a href="/datenschutz/" target="_blank">Datenschutzerklärung</a>') | safe }}</span>
+        </label>
+        <p class="wizard__error" data-error hidden>Bitte Name, Telefonnummer und Datenschutz-Häkchen nicht vergessen.</p>
+        <button type="button" class="btn btn--yellow btn--big" data-submit>{{ bewerbung.contact.submit_label }}</button>
+      </div>
+
+      <!-- Erfolg -->
+      <div class="wizard__step wizard__step--success" data-step="success">
+        <div class="wizard__confetti" data-confetti aria-hidden="true"></div>
+        <h2 class="h2">{{ bewerbung.success.heading }}</h2>
+        <p class="lead">{{ bewerbung.success.text }}</p>
+        <a href="/" class="btn btn--outline">{{ bewerbung.success.back_label }}</a>
+      </div>
+
+      <button type="button" class="wizard__back" data-back hidden aria-label="Einen Schritt zurück">← Zurück</button>
+    </div>
+  </div>
+</section>
+
+<script src="/js/bewerbung.js" defer></script>

@@ -1,0 +1,261 @@
+# Decap CMS Konfiguration
+# Lokal bearbeiten: "npm run cms" + "npm start", dann http://localhost:8080/admin/
+# Online (Netlify): Identity + Git Gateway aktivieren, dann deine-domain.de/admin/
+
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+
+locale: de
+site_url: /
+display_url: /
+logo_url: /assets/logo.png
+media_folder: "src/assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "startseite"
+    label: "🏠 Startseite"
+    description: "Jede Sektion der Startseite einzeln bearbeiten – mit Live-Vorschau rechts."
+    editor:
+      preview: true
+    files:
+      - name: "hero"
+        label: "1 · Hero (großes Bild oben)"
+        file: "src/_data/home/hero.json"
+        fields:
+          - { label: "Überschrift", name: "heading", widget: "text", hint: "Zeilenumbruch mit Enter = fester Umbruch auf der Seite" }
+          - { label: "Text in der weißen Box", name: "box_text", widget: "text" }
+          - { label: "Button-Beschriftung", name: "cta_label", widget: "string" }
+          - { label: "Button-Ziel", name: "cta_anchor", widget: "select", options: ["#start", "#ueber-uns", "#kompetenzen", "#jobs", "#kontakt", "/bewerbung/"] }
+          - { label: "Hintergrundbild", name: "image", widget: "image" }
+          - { label: "Bildbeschreibung (Alt-Text)", name: "image_alt", widget: "string" }
+
+      - name: "intro"
+        label: "2 · Einleitung (Bild + Text)"
+        file: "src/_data/home/intro.json"
+        fields:
+          - { label: "Bild", name: "image", widget: "image" }
+          - { label: "Bildbeschreibung (Alt-Text)", name: "image_alt", widget: "string" }
+          - { label: "Text", name: "text", widget: "text" }
+          - { label: "Button-Beschriftung", name: "cta_label", widget: "string" }
+          - { label: "Button-Ziel", name: "cta_anchor", widget: "select", options: ["#start", "#ueber-uns", "#kompetenzen", "#jobs", "#kontakt", "/bewerbung/"] }
+
+      - name: "loesungen"
+        label: "3 · Über 400 Lösungen"
+        file: "src/_data/home/loesungen.json"
+        fields:
+          - { label: "Überschrift", name: "heading", widget: "text" }
+          - { label: "Text", name: "text", widget: "text" }
+          - label: "Kennzahlen-Zeile"
+            name: "stats"
+            widget: "list"
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "Text", name: "label", widget: "string" }
+
+      - name: "kompetenzen"
+        label: "4 · Unsere Kompetenzen"
+        file: "src/_data/home/kompetenzen.json"
+        fields:
+          - { label: "Überschrift (grüne Box)", name: "heading", widget: "text" }
+          - { label: "Aufzählungspunkte", name: "items", widget: "list" }
+          - { label: "Button 1 Beschriftung", name: "cta1_label", widget: "string" }
+          - { label: "Button 1 Ziel", name: "cta1_anchor", widget: "select", options: ["#start", "#ueber-uns", "#kompetenzen", "#jobs", "#kontakt", "/bewerbung/"] }
+          - { label: "Button 2 Beschriftung", name: "cta2_label", widget: "string" }
+          - { label: "Button 2 Ziel", name: "cta2_anchor", widget: "select", options: ["#start", "#ueber-uns", "#kompetenzen", "#jobs", "#kontakt", "/bewerbung/"] }
+          - { label: "Bild (rechte Karte)", name: "card_image", widget: "image" }
+          - { label: "Bildbeschreibung (Alt-Text)", name: "card_image_alt", widget: "string" }
+          - { label: "Überschrift (rechte Karte)", name: "card_heading", widget: "text" }
+          - { label: "Text (rechte Karte)", name: "card_text", widget: "text" }
+
+      - name: "cards"
+        label: "5 · Zwei Info-Karten"
+        file: "src/_data/home/cards.json"
+        fields:
+          - label: "Karten"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.heading}}"
+            fields:
+              - { label: "Bild", name: "image", widget: "image" }
+              - { label: "Bildbeschreibung (Alt-Text)", name: "image_alt", widget: "string" }
+              - { label: "Überschrift", name: "heading", widget: "text" }
+              - { label: "Text", name: "text", widget: "text" }
+
+      - name: "jobs"
+        label: "6 · Jobs & Team"
+        file: "src/_data/home/jobs.json"
+        fields:
+          - { label: "Große Überschrift", name: "heading", widget: "text" }
+          - { label: "Gelbe Box – kleine Zeile", name: "box_eyebrow", widget: "string" }
+          - { label: "Gelbe Box – Überschrift", name: "box_heading", widget: "string" }
+          - { label: "Gelbe Box – Text", name: "box_text", widget: "string" }
+          - { label: "Gelbe Box – Button", name: "box_cta_label", widget: "string" }
+          - { label: "Gelbe Box – Button-Ziel", name: "box_cta_anchor", widget: "select", options: ["#start", "#ueber-uns", "#kompetenzen", "#jobs", "#kontakt", "/bewerbung/"] }
+          - { label: "Team – Überschrift", name: "team_heading", widget: "string" }
+          - { label: "Team – Text", name: "team_text", widget: "text" }
+          - label: "Team-Bildergalerie (3 Bilder)"
+            name: "gallery"
+            widget: "list"
+            summary: "{{fields.alt}}"
+            fields:
+              - { label: "Bild", name: "image", widget: "image" }
+              - { label: "Bildbeschreibung (Alt-Text)", name: "alt", widget: "string" }
+
+      - name: "kontakt"
+        label: "7 · Kontakt & Formular"
+        file: "src/_data/home/kontakt.json"
+        fields:
+          - { label: "Überschrift", name: "heading", widget: "text" }
+          - { label: "Text", name: "text", widget: "text" }
+          - { label: "Formular – kleine Zeile", name: "form_eyebrow", widget: "string" }
+          - { label: "Formular – Überschrift", name: "form_heading", widget: "text" }
+          - { label: "Themen im Auswahlfeld", name: "topics", widget: "list" }
+          - { label: "Datenschutz-Hinweistext", name: "privacy_text", widget: "text" }
+          - { label: "Absende-Button", name: "submit_label", widget: "string" }
+
+      - name: "besuch"
+        label: "8 · Standort & Einsatzgebiete"
+        file: "src/_data/home/besuch.json"
+        fields:
+          - { label: "Große Überschrift", name: "heading", widget: "text" }
+          - { label: "Text", name: "text", widget: "text" }
+          - { label: "Grüne Box – Überschrift", name: "box_heading", widget: "text" }
+          - { label: "Grüne Box – Text", name: "box_text", widget: "text" }
+          - { label: "Kartenbild", name: "map_image", widget: "image" }
+          - { label: "Karten-Link (öffnet Google Maps)", name: "map_link", widget: "string" }
+          - { label: "Button-Beschriftung", name: "cta_label", widget: "string" }
+          - { label: "Button-Ziel", name: "cta_anchor", widget: "select", options: ["#start", "#ueber-uns", "#kompetenzen", "#jobs", "#kontakt", "/bewerbung/"] }
+          - { label: "Überschrift Einsatzgebiete", name: "areas_heading", widget: "string" }
+          - { label: "Einsatzgebiete", name: "areas", widget: "list" }
+
+  - name: "bewerbungsseite"
+    label: "📝 Bewerbungsseite"
+    description: "Texte des interaktiven Bewerbungs-Assistenten."
+    files:
+      - name: "bewerbung"
+        label: "Bewerbungs-Assistent"
+        file: "src/_data/bewerbung.json"
+        fields:
+          - { label: "Überschrift", name: "heading", widget: "text" }
+          - { label: "Einleitung", name: "intro", widget: "text" }
+          - { label: "Start-Button", name: "start_label", widget: "string" }
+          - label: "Frage: Führerschein"
+            name: "q_license"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Frage", name: "question", widget: "string" }
+              - { label: "Hinweis", name: "hint", widget: "string" }
+              - { label: "Antwort Ja", name: "yes", widget: "string" }
+              - { label: "Antwort Nein", name: "no", widget: "string" }
+          - label: "Frage: Postleitzahl"
+            name: "q_plz"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Frage", name: "question", widget: "string" }
+              - { label: "Hinweis", name: "hint", widget: "string" }
+              - { label: "Platzhalter", name: "placeholder", widget: "string" }
+          - label: "Frage: Was ist dir wichtig?"
+            name: "q_wichtig"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Frage", name: "question", widget: "string" }
+              - { label: "Hinweis", name: "hint", widget: "string" }
+              - { label: "Auswahlmöglichkeiten", name: "options", widget: "list" }
+          - label: "Frage: Starttermin"
+            name: "q_start"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Frage", name: "question", widget: "string" }
+              - { label: "Auswahlmöglichkeiten", name: "options", widget: "list" }
+          - label: "Frage: Erreichbarkeit"
+            name: "q_erreichbar"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Frage", name: "question", widget: "string" }
+              - { label: "Auswahlmöglichkeiten", name: "options", widget: "list" }
+          - label: "Kontakt-Schritt"
+            name: "contact"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Überschrift", name: "question", widget: "string" }
+              - { label: "Hinweis", name: "hint", widget: "string" }
+              - { label: "Feld Name", name: "name_label", widget: "string" }
+              - { label: "Feld Telefon", name: "phone_label", widget: "string" }
+              - { label: "Feld E-Mail", name: "email_label", widget: "string" }
+              - { label: "Datenschutz-Text", name: "privacy_text", widget: "text" }
+              - { label: "Absende-Button", name: "submit_label", widget: "string" }
+          - label: "Erfolgs-Seite"
+            name: "success"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Überschrift", name: "heading", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+              - { label: "Zurück-Button", name: "back_label", widget: "string" }
+
+  - name: "einstellungen"
+    label: "⚙️ Allgemein"
+    description: "Kontaktdaten, Öffnungszeiten, Navigation und Footer."
+    files:
+      - name: "site"
+        label: "Kontakt, Navigation & Footer"
+        file: "src/_data/site.json"
+        fields:
+          - { label: "Seitentitel", name: "title", widget: "string" }
+          - { label: "SEO-Titel (Startseite, für Google)", name: "seo_title", widget: "string" }
+          - { label: "Beschreibung (SEO)", name: "description", widget: "text", hint: "Ideal: 120–155 Zeichen" }
+          - { label: "Domain (mit https://, ohne Slash am Ende)", name: "url", widget: "string" }
+          - { label: "Logo", name: "logo", widget: "image" }
+          - { label: "Telefonnummer", name: "phone", widget: "string" }
+          - { label: "E-Mail-Adresse", name: "email", widget: "string" }
+          - { label: "Adresse Zeile 1", name: "address_line1", widget: "string" }
+          - { label: "Adresse Zeile 2", name: "address_line2", widget: "string" }
+          - label: "Öffnungszeiten"
+            name: "hours"
+            widget: "list"
+            summary: "{{fields.days}} {{fields.time}}"
+            fields:
+              - { label: "Tage", name: "days", widget: "string" }
+              - { label: "Uhrzeit", name: "time", widget: "string" }
+          - label: "Navigation"
+            name: "nav"
+            widget: "list"
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "Beschriftung", name: "label", widget: "string" }
+              - { label: "Sprungziel (Anker)", name: "anchor", widget: "string", hint: "z. B. #kontakt" }
+          - { label: "Facebook-Link", name: "facebook", widget: "string" }
+          - { label: "Instagram-Link", name: "instagram", widget: "string" }
+          - { label: "Copyright-Zeile", name: "copyright", widget: "string" }
+
+  - name: "rechtliches"
+    label: "📄 Rechtliches"
+    files:
+      - name: "impressum"
+        label: "Impressum"
+        file: "src/impressum.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "legal.njk" }
+          - { label: "Titel", name: "title", widget: "string" }
+          - { label: "SEO-Beschreibung", name: "description", widget: "text" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/impressum/" }
+          - { label: "Inhalt", name: "body", widget: "markdown" }
+      - name: "datenschutz"
+        label: "Datenschutzerklärung"
+        file: "src/datenschutz.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "legal.njk" }
+          - { label: "Titel", name: "title", widget: "string" }
+          - { label: "SEO-Beschreibung", name: "description", widget: "text" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/datenschutz/" }
+          - { label: "Inhalt", name: "body", widget: "markdown" }

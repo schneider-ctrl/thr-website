@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inhalte bearbeiten – Treppenhausreinigung Rostock</title>
+  <meta name="robots" content="noindex">
+</head>
+<body>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    // ------- Live-Vorschau im Design der Website -------
+    CMS.registerPreviewStyle("/css/style.css");
+    CMS.registerPreviewStyle(
+      "body { padding: 24px; background: #FFFDEB; } .cms-hint { font-family: sans-serif; font-size: 12px; color: #888; margin-top: 24px; }",
+      { raw: true }
+    );
+
+    var get = function (entry) {
+      var path = Array.prototype.slice.call(arguments, 1);
+      var v = entry.getIn(["data"].concat(path));
+      return v == null ? "" : v;
+    };
+    // Text mit festen Zeilenumbrüchen rendern
+    function lines(text) {
+      var parts = String(text).split(/\r?\n/);
+      var out = [];
+      parts.forEach(function (p, i) {
+        if (i > 0) out.push(h("br"));
+        out.push(p);
+      });
+      return out;
+    }
+    function img(getAsset, path, style) {
+      if (!path) return null;
+      return h("img", { src: String(getAsset(path)), style: style || { maxWidth: "100%", display: "block" } });
+    }
+    var hint = h("p", { className: "cms-hint" }, "Vorschau – Abstände können auf der echten Seite leicht abweichen.");
+
+    // 1 · Hero
+    CMS.registerPreviewTemplate("hero", createClass({
+      render: function () {
+        var e = this.props.entry, ga = this.props.getAsset;
+        return h("div", {},
+          h("section", { className: "hero", style: { backgroundImage: "url(" + String(ga(get(e, "image"))) + ")", aspectRatio: "1200/769", minHeight: "0" } },
+            h("div", { className: "container" },
+              h("div", { className: "hero__panel", style: { width: "60%" } },
+                h("div", { className: "hero__green" }, h("h1", {}, lines(get(e, "heading")))),
+                h("div", { className: "hero__white" },
+                  h("p", { className: "h4" }, lines(get(e, "box_text"))),
+                  h("span", { className: "btn btn--yellow" }, get(e, "cta_label"))
+                )
+              )
+            )
+          ),
+          hint
+        );
+      }
+    }));
+
+    // 2 · Einleitung
+    CMS.registerPreviewTemplate("intro", createClass({
+      render: function () {
+        var e = this.props.entry, ga = this.props.getAsset;
+        return h("div", {},
+          h("section", { className: "section intro" },
+            h("div", { className: "container intro__grid" },
+              h("div", { className: "intro__image" }, img(ga, get(e, "image"))),
+              h("div", { className: "intro__content" },
+                h("p", { className: "lead lead--bold" }, get(e, "text")),
+                h("span", { className: "btn btn--outline" }, get(e, "cta_label"))
+              )
+            )
+          ),
+          hint
+        );
+      }
+    }));
+
+    // 3 · Lösungen
+    CMS.registerPreviewTemplate("loesungen", createClass({
+      render: function () {
+        var e = this.props.entry;
+        var stats = (get(e, "stats") || []).map(function (s) {
+          return h("span", { className: "mono-label" }, s.get ? s.get("label") : "");
+        });
+        return h("div", {},
+          h("section", { className: "section" },
+            h("div", { className: "container" },
+              h("h2", { className: "h1" }, lines(get(e, "heading"))),
+              h("p", { className: "lead" }, get(e, "text")),
+              h("div", { className: "stats" }, stats)
+            )
+          ),
+          hint
+        );
+      }
+    }));
+
+    // 4 · Kompetenzen
+    CMS.registerPreviewTemplate("kompetenzen", createClass({
+      render: function () {
+        var e = this.props.entry, ga = this.props.getAsset;
+        var items = (get(e, "items") || []).map(function (it) {
+          return h("li", {}, String(it));
+        });
+        return h("div", {},
+          h("section", { className: "section" },
+            h("div", { className: "container kompetenzen__grid" },
+              h("div", { className: "card card--green" },
+                h("h2", { className: "h3" }, lines(get(e, "heading"))),
+                h("ul", { className: "checklist" }, items),
+                h("div", { className: "card__actions" },
+                  h("span", { className: "btn btn--outline-light" }, get(e, "cta1_label")),
+                  h("span", { className: "btn btn--yellow" }, get(e, "cta2_label"))
+                )
+              ),
+              h("div", { className: "card card--image" },
+                img(ga, get(e, "card_image"), { width: "100%", aspectRatio: "1/1", objectFit: "cover" }),
+                h("div", { className: "card__body" },
+                  h("h3", { className: "h4" }, lines(get(e, "card_heading"))),
+                  h("p", {}, get(e, "card_text"))
+                )
+              )
+            )
+          ),
+          hint
+        );
+      }
+    }));
+
+    // 5 · Info-Karten
+    CMS.registerPreviewTemplate("cards", createClass({
+      render: function () {
+        var e = this.props.entry, ga = this.props.getAsset;
+        var cards = (get(e, "items") || []).map(function (c) {
+          return h("div", { className: "card card--image" },
+            img(ga, c.get("image"), { width: "100%", aspectRatio: "1/1", objectFit: "cover" }),
+            h("div", { className: "card__body" },
+              h("h3", { className: "h5 u-upper" }, lines(c.get("heading") || "")),
+              h("p", {}, c.get("text"))
+            )
+          );
+        });
+        return h("div", {},
+          h("section", { className: "section" },
+            h("div", { className: "container kompetenzen__grid" }, cards)
+          ),
+          hint
+        );
+      }
+    }));
+
+    // 6 · Jobs & Team
+    CMS.registerPreviewTemplate("jobs", createClass({
+      render: function () {
+        var e = this.props.entry, ga = this.props.getAsset;
+        var gallery = (get(e, "gallery") || []).map(function (g) {
+          return img(ga, g.get("image"), { width: "32%", aspectRatio: "3/4", objectFit: "cover" });
+        });
+        return h("div", {},
+          h("section", { className: "section" },
+            h("div", { className: "container" },
+              h("h2", { className: "h1" }, lines(get(e, "heading"))),
+              h("div", { className: "jobs__grid" },
+                h("div", {},
+                  h("h3", { className: "h3" }, get(e, "team_heading")),
+                  h("p", { className: "lead--bold" }, get(e, "team_text"))
+                ),
+                h("div", { className: "card card--yellow" },
+                  h("span", { className: "mono-label" }, get(e, "box_eyebrow")),
+                  h("h3", { className: "h4 u-upper" }, get(e, "box_heading")),
+                  h("p", {}, get(e, "box_text")),
+                  h("span", { className: "btn btn--outline" }, get(e, "box_cta_label"))
+                )
+              ),
+              h("div", { style: { display: "flex", gap: "2%", marginTop: "24px" } }, gallery)
+            )
+          ),
+          hint
+        );
+      }
+    }));
+
+    // 7 · Kontakt
+    CMS.registerPreviewTemplate("kontakt", createClass({
+      render: function () {
+        var e = this.props.entry;
+        var topics = (get(e, "topics") || []).map(function (t) { return String(t); }).join(" · ");
+        return h("div", {},
+          h("section", { className: "section" },
+            h("div", { className: "container" },
+              h("h2", { className: "h2" }, lines(get(e, "heading"))),
+              h("p", {}, get(e, "text")),
+              h("div", { className: "card card--form", style: { maxWidth: "480px" } },
+                h("span", { className: "mono-label" }, get(e, "form_eyebrow")),
+                h("h3", { className: "h4 u-upper" }, lines(get(e, "form_heading"))),
+                h("p", {}, h("strong", {}, "Themen: "), topics),
+                h("p", { style: { fontSize: "0.85rem" } }, get(e, "privacy_text")),
+                h("span", { className: "btn btn--outline" }, get(e, "submit_label"))
+              )
+            )
+          ),
+          hint
+        );
+      }
+    }));
+
+    // 8 · Standort
+    CMS.registerPreviewTemplate("besuch", createClass({
+      render: function () {
+        var e = this.props.entry, ga = this.props.getAsset;
+        var areas = (get(e, "areas") || []).map(function (a) {
+          return h("span", { className: "mono-label mono-label--light" }, String(a));
+        });
+        return h("div", {},
+          h("section", { className: "section" },
+            h("div", { className: "container" },
+              h("h2", { className: "h1" }, lines(get(e, "heading"))),
+              h("p", { className: "lead--bold" }, get(e, "text")),
+              h("div", { className: "besuch__box" },
+                h("h3", { className: "h3", style: { color: "#fff" } }, lines(get(e, "box_heading"))),
+                h("p", {}, get(e, "box_text")),
+                img(ga, get(e, "map_image"), { maxWidth: "60%", borderRadius: "6px" }),
+                h("div", { style: { marginTop: "16px" } },
+                  h("span", { className: "btn btn--yellow" }, get(e, "cta_label"))
+                ),
+                h("h4", { className: "h5 u-upper", style: { color: "#fff", marginTop: "24px" } }, get(e, "areas_heading")),
+                h("div", { className: "besuch__areas-list" }, areas)
+              )
+            )
+          ),
+          hint
+        );
+      }
+    }));
+  </script>
+</body>
+</html>
