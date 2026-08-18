@@ -7,12 +7,10 @@ module.exports = function (eleventyConfig) {
   );
 
   // Responsive Bilder: erzeugt beim Build automatisch WebP + mehrere Größen
-  // aus jedem Bild – auch aus späteren CMS-Uploads. Nutzung im Template:
-  //   {% img pfad, alt, sizes %}            (normales Bild)
-  //   {% img pfad, alt, sizes, "data-slide" %}  (mit Zusatz-Attribut, z. B. Slider)
+  // aus jedem Bild – auch aus späteren CMS-Uploads.
   eleventyConfig.addNunjucksAsyncShortcode("img", async (src, alt, sizes, flagAttr) => {
     const metadata = await Image("src" + src, {
-      widths: [480, 800, 1200],
+      widths: [480, 800, 1200, 1600, 2000],
       formats: ["webp", "jpeg"],
       outputDir: "_site/assets/optimized/",
       urlPath: "/assets/optimized/",
@@ -38,11 +36,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/admin");
 
   return {
-    dir: {
-      input: "src",
-      output: "_site",
-      includes: "_includes",
-      data: "_data"
-    }
+    dir: { input: "src", output: "_site", includes: "_includes", data: "_data" }
   };
 };
