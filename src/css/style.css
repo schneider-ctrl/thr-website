@@ -982,3 +982,9 @@ h1, h2, h3, h4, .h1, .h2, .h3, .h4, .h5 {
   .card--image img { transition: none; }
   html { scroll-behavior: auto; }
 }
+
+/* ---------- Slider-Bilder: feste Breite statt aspect-ratio ---------- */
+.slider__track img { width: clamp(320px, 39.2vw, 564px); height: 100%; object-fit: cover; }
+@media (max-width: 900px) {
+  .slider__track img { width: clamp(282px, 84.6vw, 395px); }
+}
